@@ -8,11 +8,12 @@ export function useTodosIds() {
   });
 }
 
+// Use useQueries if you don't know how many useQuery you need
 export function useTodos(ids: Array<number | undefined> | undefined) {
   return useQueries({
     queries: (ids ?? [])?.map((id) => {
       return {
-        queryKey: ["todo", id],
+        queryKey: ["todo", { id }],
         queryFn: () => getTodo(id!),
       };
     }),
